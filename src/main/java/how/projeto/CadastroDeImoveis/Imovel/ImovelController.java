@@ -1,4 +1,4 @@
-package how.projeto.CadastroDeImoveis;
+package how.projeto.CadastroDeImoveis.Imovel;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
