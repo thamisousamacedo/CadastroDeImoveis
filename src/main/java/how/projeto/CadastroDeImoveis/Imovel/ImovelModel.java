@@ -15,10 +15,13 @@ public class ImovelModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private Long id;
 
+    @Column (name = "tipo")
     private String tipo;
 
+    @Column (name = "descricao")
     private String descricao;
 
     @OneToMany(mappedBy = "imovel")
