@@ -3,7 +3,7 @@ package how.projeto.CadastroDeImoveis.Imovel;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/imoveis")
 public class ImovelController {
 
     @GetMapping("/boasvindas")
@@ -19,14 +19,14 @@ public class ImovelController {
 
 
         // mostrar todos os imoveis (READ)
-        @GetMapping("/todos")
+        @GetMapping("/listar")
         public String mostrarTodosOsImoveis() {
         return "Mostrar Imovel";
         }
 
 
         // mostrar imovel por id (READ)
-        @GetMapping("/todosID")
+        @GetMapping("/listarID")
         public String mostrarTodosOsImoveisPorId() {
             return "Mostrar imovel por id";
         }
