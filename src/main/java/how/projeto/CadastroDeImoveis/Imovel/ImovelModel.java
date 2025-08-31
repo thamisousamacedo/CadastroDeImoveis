@@ -24,6 +24,7 @@ public class ImovelModel {
     @Column (name = "descricao")
     private String descricao;
 
-    @OneToMany(mappedBy = "imovel")
+    @ManyToOne
+    @JoinColumn(name = "pagamento_id")
     private PagamentoModel pagamento;
 }

@@ -25,8 +25,7 @@ public class PagamentoModel {
 
     private double valor;
 
-    @ManyToOne
-    @JoinColumn(name = "imovel_id")
+   @OneToMany(mappedBy = "pagamento")
     private List<ImovelModel> imovel;
 
 }
