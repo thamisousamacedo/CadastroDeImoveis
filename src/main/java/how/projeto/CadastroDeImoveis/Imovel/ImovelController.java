@@ -34,9 +34,9 @@ public class ImovelController {
 
 
         // mostrar imovel por id (READ)
-        @GetMapping("/listarID")
-        public String mostrarTodosOsImoveisPorId() {
-            return "Mostrar imovel por id";
+        @GetMapping("/listar/{id}")
+        public ImovelModel listarImovelPorId(@PathVariable long id) {
+            return ninjaService.ListarImoveisPorId(id);
         }
 
         // alterar dados dos imoveis (UPDATE)
