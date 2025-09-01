@@ -2,9 +2,17 @@ package how.projeto.CadastroDeImoveis.Imovel;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/imoveis")
 public class ImovelController {
+
+    public ImovelService ninjaService;
+
+    public ImovelController(ImovelService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
 
     @GetMapping("/boasvindas")
     public String boasVindas() {
@@ -20,8 +28,8 @@ public class ImovelController {
 
         // mostrar todos os imoveis (READ)
         @GetMapping("/listar")
-        public String mostrarTodosOsImoveis() {
-        return "Mostrar Imovel";
+        public List<ImovelModel> listarImoveis() {
+        return ninjaService.listarImoveis();
         }
 
 

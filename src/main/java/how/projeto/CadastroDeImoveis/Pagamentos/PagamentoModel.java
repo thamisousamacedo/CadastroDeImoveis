@@ -1,6 +1,7 @@
 package how.projeto.CadastroDeImoveis.Pagamentos;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import how.projeto.CadastroDeImoveis.Imovel.ImovelModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class PagamentoModel {
     private double valor;
 
    @OneToMany(mappedBy = "pagamento")
+   @JsonIgnore
     private List<ImovelModel> imovel;
 
 }
