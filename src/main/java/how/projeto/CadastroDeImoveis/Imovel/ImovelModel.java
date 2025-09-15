@@ -1,11 +1,9 @@
 package how.projeto.CadastroDeImoveis.Imovel;
-
 import how.projeto.CadastroDeImoveis.Pagamentos.PagamentoModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name = "tb_cadstro")
 @Data
@@ -18,11 +16,12 @@ public class ImovelModel {
     @Column (name = "id")
     private Long id;
 
+    @Column (name = "descricao")
+    private String descricao;
+
     @Column (name = "tipo")
     private String tipo;
 
-    @Column (name = "descricao")
-    private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "pagamento_id")

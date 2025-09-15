@@ -26,5 +26,11 @@ public class ImovelService {
         return imovelPorId.orElse(null);
     }
 
+    // Criar um novo imóvel
+    public ImovelModel criarImovel(ImovelModel imovel) {
+        return imovelRepository.save(imovel);
+
+    }
+
 
 }

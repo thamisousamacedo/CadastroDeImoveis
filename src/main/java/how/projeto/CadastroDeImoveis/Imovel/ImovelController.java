@@ -7,11 +7,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/imoveis")
 public class ImovelController {
+    public ImovelService imovelService;
 
-    public ImovelService ninjaService;
-
-    public ImovelController(ImovelService ninjaService) {
-        this.ninjaService = ninjaService;
+    public ImovelController(ImovelService imovelService) {
+        this.imovelService = imovelService;
     }
 
     @GetMapping("/boasvindas")
@@ -19,24 +18,24 @@ public class ImovelController {
         return "Essa é a minha primeira mensagem nessa rota";
     }
 
-        // adicionar imovel (CREATE)
+        // adicionar imovel (CREATE). @RequestBody manda no corpo da requisição o JSON que está no ImovelModel com os dados de id, tipo, descrição... toda vez que ele mandar o JSON, ele vai pegar o JSON serelializar e empurrar para salvar no BD
         @PostMapping("/criar")
-         public String criarImovel() {
-            return "Imovel criado";
+         public ImovelModel criarImovel(@RequestBody ImovelModel imovel) {
+            return imovelService.criarImovel(imovel);
         }
 
 
-        // mostrar todos os imoveis (READ)
+        // mostrar todos os imoveis (READ). O Get está puxando do BD, serelializando em forma de JSON e mostrando para o usuário
         @GetMapping("/listar")
         public List<ImovelModel> listarImoveis() {
-        return ninjaService.listarImoveis();
+            return imovelService.listarImoveis();
         }
 
 
-        // mostrar imovel por id (READ)
+        // mostrar imovel por id (READ). Puxando do BD, serealizando em forma de JSON. PathVariable pegar por id
         @GetMapping("/listar/{id}")
         public ImovelModel listarImovelPorId(@PathVariable long id) {
-            return ninjaService.ListarImoveisPorId(id);
+            return imovelService.ListarImoveisPorId(id);
         }
 
         // alterar dados dos imoveis (UPDATE)

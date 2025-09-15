@@ -1,6 +1,4 @@
 package how.projeto.CadastroDeImoveis.Pagamentos;
-
-
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,6 +28,4 @@ public class PagamentoController {
     public String deletarPagamento() {
         return "Pagamento deletado com sucesso";
     }
-
-
 }
