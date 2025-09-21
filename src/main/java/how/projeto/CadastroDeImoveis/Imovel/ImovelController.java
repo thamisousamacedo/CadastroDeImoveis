@@ -38,8 +38,9 @@ public class ImovelController {
         }
 
         // alterar dados dos imoveis (UPDATE)
-        @PutMapping("/alterarID")
-        public String AlterarImovelPorId() {return "Alterar imovel por id";
+        @PutMapping("/alterar/{id}")
+        public ImovelModel AlterarImovelPorId(@PathVariable Long id, @RequestBody ImovelModel imovelAtualizado) {
+            return imovelService.alterarImovel(id, imovelAtualizado);
         }
 
         // deletar imovel (DELETE)

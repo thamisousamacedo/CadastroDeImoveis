@@ -37,4 +37,12 @@ public class ImovelService {
         imovelRepository.deleteById(id);
     }
 
+    public ImovelModel alterarImovel(Long id, ImovelModel imovelAtualizado) {
+        if (imovelRepository.existsById(id)) {
+            imovelAtualizado.setId(id);
+            return imovelRepository.save(imovelAtualizado);
+        }
+        return null;
+    }
+
 }
