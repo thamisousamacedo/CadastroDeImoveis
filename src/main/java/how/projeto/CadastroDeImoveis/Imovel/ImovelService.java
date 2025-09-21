@@ -32,5 +32,9 @@ public class ImovelService {
 
     }
 
+    // Deletar imóvel por id - Tem que ser um metodo void (não precisa retornar)
+    public void deletarImovelPorId(Long id) {
+        imovelRepository.deleteById(id);
+    }
 
 }

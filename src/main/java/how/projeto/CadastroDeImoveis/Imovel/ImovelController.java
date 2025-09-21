@@ -34,20 +34,18 @@ public class ImovelController {
 
         // mostrar imovel por id (READ). Puxando do BD, serealizando em forma de JSON. PathVariable pegar por id
         @GetMapping("/listar/{id}")
-        public ImovelModel listarImovelPorId(@PathVariable long id) {
-            return imovelService.ListarImoveisPorId(id);
+        public ImovelModel listarImovelPorId(@PathVariable long id) {return imovelService.ListarImoveisPorId(id);
         }
 
         // alterar dados dos imoveis (UPDATE)
         @PutMapping("/alterarID")
-        public String AlterarImovelPorId() {
-            return "Alterar imovel por id";
+        public String AlterarImovelPorId() {return "Alterar imovel por id";
         }
 
         // deletar imovel (DELETE)
-        @DeleteMapping("/deletarID")
-        public String deletarImovelPorId() {
-            return "Imovel deletado por id";
+        @DeleteMapping("/deletar/{id}")
+        public void deletarImovelPorId(@PathVariable Long id) {
+            imovelService.deletarImovelPorId(id);
         }
 
 
