@@ -20,7 +20,7 @@ public class ImovelController {
 
         // adicionar imovel (CREATE). @RequestBody manda no corpo da requisição o JSON que está no ImovelModel com os dados de id, tipo, descrição... toda vez que ele mandar o JSON, ele vai pegar o JSON serelializar e empurrar para salvar no BD
         @PostMapping("/criar")
-         public ImovelModel criarImovel(@RequestBody ImovelModel imovel) {
+         public ImovelDTO criarImovel(@RequestBody ImovelDTO imovel) {
             return imovelService.criarImovel(imovel);
         }
 

@@ -9,9 +9,11 @@ import java.util.Optional;
 public class ImovelService {
 
     private ImovelRepository imovelRepository;
+    private ImovelMapper imovelMapper;
 
-    public ImovelService(ImovelRepository imovelRepository) {
+    public ImovelService(ImovelRepository imovelRepository, ImovelMapper imovelMapper) {
         this.imovelRepository = imovelRepository;
+        this.imovelMapper = imovelMapper;
     }
 
     // listar todos os imóveis
@@ -27,9 +29,10 @@ public class ImovelService {
     }
 
     // Criar um novo imóvel
-    public ImovelModel criarImovel(ImovelModel imovel) {
-        return imovelRepository.save(imovel);
-
+    public ImovelDTO criarImovel(ImovelDTO imovelDTO) {
+        ImovelModel imovel = imovelMapper.map(imovelDTO);
+        imovel = imovelRepository.save(imovel);
+        return imovelMapper.map(imovel);
     }
 
     // Deletar imóvel por id - Tem que ser um metodo void (não precisa retornar)
