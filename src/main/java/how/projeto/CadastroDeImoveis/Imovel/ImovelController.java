@@ -27,19 +27,19 @@ public class ImovelController {
 
         // mostrar todos os imoveis (READ). O Get está puxando do BD, serelializando em forma de JSON e mostrando para o usuário
         @GetMapping("/listar")
-        public List<ImovelModel> listarImoveis() {
+        public List<ImovelDTO> listarImoveis() {
             return imovelService.listarImoveis();
         }
 
 
         // mostrar imovel por id (READ). Puxando do BD, serealizando em forma de JSON. PathVariable pegar por id
         @GetMapping("/listar/{id}")
-        public ImovelModel listarImovelPorId(@PathVariable long id) {return imovelService.ListarImoveisPorId(id);
+        public ImovelDTO listarImovelPorId(@PathVariable long id) {return imovelService.ListarImoveisPorId(id);
         }
 
         // alterar dados dos imoveis (UPDATE)
         @PutMapping("/alterar/{id}")
-        public ImovelModel AlterarImovelPorId(@PathVariable Long id, @RequestBody ImovelModel imovelAtualizado) {
+        public ImovelDTO AlterarImovelPorId(@PathVariable Long id, @RequestBody ImovelDTO imovelAtualizado) {
             return imovelService.alterarImovel(id, imovelAtualizado);
         }
 
