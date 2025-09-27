@@ -9,7 +9,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/imoveis")
 public class ImovelController {
-    public ImovelService imovelService;
+
+    public final ImovelService imovelService;
 
     public ImovelController(ImovelService imovelService) {
         this.imovelService = imovelService;

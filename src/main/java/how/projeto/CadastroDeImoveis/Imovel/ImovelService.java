@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 @Service
 public class ImovelService {
 
-    private ImovelRepository imovelRepository;
-    private ImovelMapper imovelMapper;
+    private final ImovelRepository imovelRepository;
+    private final ImovelMapper imovelMapper;
 
     public ImovelService(ImovelRepository imovelRepository, ImovelMapper imovelMapper) {
         this.imovelRepository = imovelRepository;

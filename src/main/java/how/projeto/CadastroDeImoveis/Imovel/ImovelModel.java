@@ -4,11 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 @Entity
 @Table(name = "tb_cadstro")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = "pagamento")
 public class ImovelModel {
 
     @Id
