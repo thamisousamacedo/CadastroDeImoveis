@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Tabela de Imoveis</title>
+</head>
+<body>
+
+<h1>Lista de Imóveis</h1>
+<table>
+    <thead>
+        <tr>
+           <th>Id</th>
+            <th>Descrição</th>
+            <th>Tipo</th>
+            <th>Pagamento</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each ="imovel: ${imoveis}">
+        <td th:text="${imovel.id}"></td>
+        <td th:text="${imovel.descricao}"></td>
+        <td th:text="${imovel.tipo}"></td>
+        <td th:text="${imovel.pagamento}"></td>
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

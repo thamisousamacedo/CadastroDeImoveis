@@ -10,7 +10,7 @@ import java.util.List;
 @RequestMapping("/imoveis")
 public class ImovelController {
 
-    public final ImovelService imovelService;
+    private final ImovelService imovelService;
 
     public ImovelController(ImovelService imovelService) {
         this.imovelService = imovelService;
@@ -56,7 +56,6 @@ public class ImovelController {
         @PutMapping("/alterar/{id}")
         public ResponseEntity<?> AlterarImovelPorId(@PathVariable Long id, @RequestBody ImovelDTO imovelAtualizado) {
             ImovelDTO imovel = imovelService.alterarImovel(id, imovelAtualizado);
-
             if (imovel != null) {
                 return ResponseEntity.ok(imovel);
             } else {
@@ -64,9 +63,6 @@ public class ImovelController {
                         .body("Imóvel com o id: " + id + " não existe nos nossos registros!");
             }
         }
-
-
-
 
         // deletar imovel (DELETE)
         @DeleteMapping("/deletar/{id}")
@@ -81,4 +77,23 @@ public class ImovelController {
             }
         }
 
+    @GetMapping("/estatisticas/total-pagamentos-por-imovel")
+    public ResponseEntity<List<ImovelStatsDTO>> getTotalPagamentosPorImovel() {
+        List<ImovelStatsDTO> stats = imovelService.calcularTotalPagamentosPorImovel();
+        return ResponseEntity.ok(stats);
+    }
+
+    @GetMapping("/estatisticas/vendas-por-mes-ano")
+    public ResponseEntity<List<VendasMesAnoDTO>> getVendasPorMesAno() {
+        List<VendasMesAnoDTO> stats = imovelService.calcularTotalVendasPorMesAno();
+        return ResponseEntity.ok(stats);
+    }
+
+    @GetMapping("/estatisticas/percentual-por-tipo")
+    public ResponseEntity<List<TipoImovelPercentualDTO>> getPercentualVendasPorTipo() {
+        List<TipoImovelPercentualDTO> stats = imovelService.calcularPercentualVendasPorTipo();
+        return ResponseEntity.ok(stats);
+    }
 }
+
+

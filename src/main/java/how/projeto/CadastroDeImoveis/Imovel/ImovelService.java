@@ -2,7 +2,9 @@ package how.projeto.CadastroDeImoveis.Imovel;
 
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -55,4 +57,53 @@ public class ImovelService {
         return null;
     }
 
+
+    public List<ImovelStatsDTO> calcularTotalPagamentosPorImovel() {
+        List<ImovelModel> imoveis = imovelRepository.findAll();
+
+        return imoveis.stream()
+                .map(imovel -> new ImovelStatsDTO(
+                        imovel.getId(),
+                        imovel.getPagamento() != null ? imovel.getPagamento().getValor() : 0.0
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public List<VendasMesAnoDTO> calcularTotalVendasPorMesAno() {
+        List<ImovelModel> imoveis = imovelRepository.findAll();
+
+        Map<String, Double> vendasPorMesAno = imoveis.stream()
+                .filter(imovel -> imovel.getPagamento() != null && imovel.getPagamento().getDataPagamento() != null)
+                .collect(Collectors.groupingBy(
+                        imovel -> imovel.getPagamento().getDataPagamento().getMonthValue() + "/" + imovel.getPagamento().getDataPagamento().getYear(),
+                        Collectors.summingDouble(imovel -> imovel.getPagamento().getValor())
+                ));
+        return vendasPorMesAno.entrySet().stream()
+                .map(entry -> new VendasMesAnoDTO(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    public List<TipoImovelPercentualDTO> calcularPercentualVendasPorTipo() {
+        List<ImovelModel> imoveis = imovelRepository.findAll();
+        long totalImoveis = imoveis.size();
+
+        if (totalImoveis == 0) {
+            return List.of();
+        }
+
+        Map<String, Long> contagemPorTipo = imoveis.stream()
+                .collect(Collectors.groupingBy(ImovelModel::getTipo, Collectors.counting()));
+                    DecimalFormat df = new DecimalFormat("#.##");
+
+        return contagemPorTipo.entrySet().stream()
+                .map(entry -> {
+                    double percentual = (double) entry.getValue() * 100 / totalImoveis;
+                    return new TipoImovelPercentualDTO(
+                            entry.getKey(),
+                            df.format(percentual) + " %"
+                    );
+                })
+                .collect(Collectors.toList());
+    }
 }
+

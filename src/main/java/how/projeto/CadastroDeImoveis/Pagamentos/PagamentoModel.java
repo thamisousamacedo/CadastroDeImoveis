@@ -19,6 +19,7 @@ import java.util.List;
 public class PagamentoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private LocalDate dataPagamento;
